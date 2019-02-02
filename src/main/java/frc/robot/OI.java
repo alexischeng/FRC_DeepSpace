@@ -21,12 +21,13 @@ public class OI{
   private final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
   private final int Lvl2CLIMB_BUTTON = 8;
-  private final int Lvl3CLIMB_BUTTON = 3;//cant find button
+  private final int Lvl3CLIMB_BUTTON = 3;
   private final int CLIMBNEXT_BUTTON = 6;
   private final int CLIMBPREV_BUTTON = 5;
-  public JoystickButton xButton1 = new JoystickButton(joy, CAMERA_BUTTON);
+  public JoystickButton bButton1 = new JoystickButton(joy, CAMERA_BUTTON);
 	public JoystickButton backButton1 = new JoystickButton(joy, Lvl2DESC_BUTTON);
-	public JoystickButton startButton1 = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
+  public JoystickButton startButton1 = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
+  public JoystickButton xButton1 = new JoystickButton(joy, Lvl3CLIMB_BUTTON);
   public JoystickButton leftBumper1 = new JoystickButton(joy, CLIMBPREV_BUTTON);
   public JoystickButton rightBumper1 = new JoystickButton(joy, CLIMBNEXT_BUTTON);
     
@@ -48,14 +49,14 @@ public class OI{
 
   public OI () {
 
-    bButton1.toggleWhenPressed(new CameraToggle);
+   // bButton1.toggleWhenPressed(new CameraToggle);
 
-    rightTrigger2.togglewhenActive(new SlideForward()); //slide moves right
-    rightTrigger2.whenInactive(new SlideStop()); //slide stops at current place
+    /*rightTrigger2.togglewhenActive(new SlideCommand()); //slide moves right
+    rightTrigger2.whenInactive(new SlideCommand()); //slide stops at current place
 
-    leftTrigger2.togglewhenActive(new SlideForward()); //slide moves left
+    leftTrigger2.togglewhenActive(new SlideCommand()); //slide moves left
     leftTrigger2.whenInactive(new SlideStop()); //slide stops at current place
-
+*/
     backButton1.whenPressed(new DescendCommandGroup()); //initiate lvl 2 descent
     startButton1.whenPressed(new L2AscendCommandGroup()); //initiate lvl 2 climb
     xButton1.whenPressed(new L3AscendCommandGroup()); // intiate lvl 3 climb
@@ -68,7 +69,7 @@ public class OI{
     aButton2.toggleWhenPressed(new LiftCommand()); //move lift to low hatch position
 
     bButton2.togglewhenActive(new GrabberExtend()); //toggle for clamp
-    bButton2.togglewhenInactive(new GrabberRetract()); //toggle for clamp
+    bButton2.whenInactive(new GrabberRetract()); //toggle for clamp
 
     
   }
