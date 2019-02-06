@@ -3,7 +3,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -71,6 +71,11 @@ public class OI{
     bButton2.togglewhenActive(new GrabberExtend()); //toggle for clamp
     bButton2.whenInactive(new GrabberRetract()); //toggle for clamp
 
+
+
+
+    SmartDashboard.putNumber("Joy1 Axis 1", joy.getRawAxis(1));
+    SmartDashboard.putNumber("Joy1 Axis 2", joy.getRawAxis(4));
     
   }
  
