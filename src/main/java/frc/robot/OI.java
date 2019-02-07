@@ -1,14 +1,9 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.SendableBase;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
 
@@ -31,7 +26,6 @@ public class OI{
   public JoystickButton leftBumper1 = new JoystickButton(joy, CLIMBPREV_BUTTON);
   public JoystickButton rightBumper1 = new JoystickButton(joy, CLIMBNEXT_BUTTON);
     
-
   Joystick joy2 = new Joystick(1);
 
 
@@ -63,20 +57,22 @@ public class OI{
 
     leftBumper1.whenPressed(new ClimbPrevCommand());
     rightBumper1.whenPressed(new ClimbNextCommand());
-
+    
     yButton2.toggleWhenPressed(new LiftCommand()); //move lift to high hatch position
     xButton2.toggleWhenPressed(new LiftCommand()); //move lift to mid hatch position
     aButton2.toggleWhenPressed(new LiftCommand()); //move lift to low hatch position
 
-    bButton2.togglewhenActive(new GrabberExtend()); //toggle for clamp
+    bButton2.whenActive(new GrabberExtend()); //toggle for clamp
     bButton2.whenInactive(new GrabberRetract()); //toggle for clamp
-
-
-
+    
 
     SmartDashboard.putNumber("Joy1 Axis 1", joy.getRawAxis(1));
     SmartDashboard.putNumber("Joy1 Axis 2", joy.getRawAxis(4));
-    
+    SmartDashboard.putBoolean("Level 2 Descend Active", joy.getRawButtonPressed(Lvl2DESCEND_BUTTON)); //we wanted this as a drop down list....?
+    SmartDashboard.putBoolean("Level 2 Ascend Active", joy.getRawButtonPressed(Lvl2CLIMB_BUTTON));
+    SmartDashboard.putBoolean("Level 3 Ascend", joy.getRawButtonPressed(Lvl3CLIMB_BUTTON));
+ 
+    //change file
   }
  
 
@@ -90,23 +86,12 @@ public class OI{
     return joy.getRawAxis(4);
   }
 
-
-  public double liftUpValue() {
-    return joy2.getRawAxis(0);
-  }
-
-  public double liftDownValue() {
-    //need to check axes
+  public double getLiftValue() {
     return joy2.getRawAxis(1);
   }
 
-
-  public double getLeftSlideValue() {
-    return joy2.getRawAxis(2);
-  }
-
-  public double getRightSlideValue() {
-    return joy2.getRawAxis(3);
+  public double getSlideValue() {
+    return joy2.getRawAxis(3) - joy2.getRawAxis(2);
   }
 
 
