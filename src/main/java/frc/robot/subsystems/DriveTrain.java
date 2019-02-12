@@ -7,7 +7,9 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.RobotMap.MapKeys;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -32,12 +34,12 @@ public class DriveTrain extends Subsystem {
 
   public DriveTrain(){
     //initialize + set objects created above
-    m_frontleft = new WPI_TalonSRX(RobotMap.frontLeftMotorCanId());
-    m_backleft = new WPI_TalonSRX(RobotMap.backLeftMotorCanId());
+    m_frontleft = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_FRONTLEFT));
+    m_backleft = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_BACKLEFT));
     m_left = new SpeedControllerGroup(m_frontleft, m_backleft);
 
-    m_frontright = new WPI_TalonSRX(RobotMap.frontRightMotorCanId());
-    m_backright = new WPI_TalonSRX(RobotMap.backRightMotorCanId());
+    m_frontright = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_FRONTRIGHT));
+    m_backright = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_BACKRIGHT));
     m_right = new SpeedControllerGroup(m_frontright, m_backright);
     //m_left.setInverted(true); invert left side
 

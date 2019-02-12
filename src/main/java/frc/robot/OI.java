@@ -68,7 +68,7 @@ public class OI{
 
     SmartDashboard.putNumber("Joy1 Axis 1", joy.getRawAxis(1));
     SmartDashboard.putNumber("Joy1 Axis 2", joy.getRawAxis(4));
-    SmartDashboard.putBoolean("Level 2 Descend Active", joy.getRawButtonPressed(Lvl2DESCEND_BUTTON)); //we wanted this as a drop down list....?
+    SmartDashboard.putBoolean("Level 2 Descend Active", joy.getRawButtonPressed(Lvl2DESC_BUTTON)); //we wanted this as a drop down list....?
     SmartDashboard.putBoolean("Level 2 Ascend Active", joy.getRawButtonPressed(Lvl2CLIMB_BUTTON));
     SmartDashboard.putBoolean("Level 3 Ascend", joy.getRawButtonPressed(Lvl3CLIMB_BUTTON));
  

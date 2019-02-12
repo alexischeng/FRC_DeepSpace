@@ -10,7 +10,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
+import frc.robot.Robot;
+import frc.robot.RobotMap.MapKeys;
 
 import java.util.EnumMap;
 
@@ -114,18 +115,18 @@ public class ClimbSubsystem extends Subsystem {
     prevStageMap.put(ClimbState.CLIMB_L3_S3, ClimbState.CLIMB_L3_S2);
     prevStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.CLIMB_L3_S3);
 
-    backleftwheel = new WPI_TalonSRX(RobotMap.backLeftWheel());   
+   // backleftwheel = new WPI_TalonSRX(RobotMap.backLeftWheel());   
    //backrightwheel = new WPI_TalonSRX(RobotMap.backRightWheel());
     //backrightwheel.setInverted(true);
     climbwheels = new SpeedControllerGroup(backleftwheel, backrightwheel);
 
-    DummySolenoid = new DoubleSolenoid(RobotMap.pmc1CanID(),6,7);
+    DummySolenoid = new DoubleSolenoid(Robot.m_map.getId(MapKeys.PCM_CLIMBCANID),6,7);
     DummySolenoid.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_1 = new DoubleSolenoid(RobotMap.pmc1CanID(),RobotMap.frontLeftSolenoidExtend(),RobotMap.frontLeftSolenoidRetract());
+    Solenoid_1 = new DoubleSolenoid(Robot.m_map.getId(MapKeys.PCM_CLIMBCANID),Robot.m_map.getId(MapKeys.SOLENOID_FRONTLEFTEXTEND),Robot.m_map.getId(MapKeys.SOLENOID_FRONTLEFTRETRACT));
     Solenoid_1.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_2 = new DoubleSolenoid(RobotMap.pmc1CanID(),RobotMap.frontRightSolenoidExtend(),RobotMap.frontRightSolenoidRetract());
+    Solenoid_2 = new DoubleSolenoid(Robot.m_map.getId(MapKeys.PCM_CLIMBCANID),Robot.m_map.getId(MapKeys.SOLENOID_FRONTRIGHTEXTEND),Robot.m_map.getId(MapKeys.SOLENOID_FRONTLEFTRETRACT));
     Solenoid_2.set(DoubleSolenoid.Value.kOff);
   
 
